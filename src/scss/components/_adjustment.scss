@@ -1,0 +1,26 @@
+.adjustment {
+  display: flex;
+  flex-direction: column;
+
+  & .label {
+    margin: 0;
+  }
+
+  & div {
+    display: flex;
+
+    & h3 {
+      margin: 0;
+    }
+
+    & i {
+      display: flex;
+      align-items: center;
+      margin: 0;
+    }
+
+    & i:hover {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,3 +1,11 @@
 @use './custom';
 @use './global';
 @use './somestyle';
+
+// sections
+@use './sections/incrementanddecrement';
+@use './sections/timer';
+@use './sections/controls';
+
+// components
+@use './components/adjustment';

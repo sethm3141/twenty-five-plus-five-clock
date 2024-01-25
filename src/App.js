@@ -1,24 +1,33 @@
+import { useState } from 'react';
+import Controls from './sections/Controls';
+import IncrementAndDecrement from './sections/IncrementAndDecrement';
+import Timer from './sections/Timer';
+
 function App() {
+  const [breakTime, setBreakTime] = useState(5);
+  const [sessionTime, setSessionTime] = useState(25);
+  const [timer, setTimer] = useState(sessionTime);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isSession, setIsSession] = useState(true);
+
   return (
     <>
-      <section>
+      <section id='top-title'>
         <h2>25 + 5 Clock</h2>
       </section>
-      <section>
-        <div>
-          <h3 id='break-label'>Break Length</h3>
-          <div>
-            <i className='fa-solid fa-circle-arrow-up'></i>
-            <i className='fa-solid fa-circle-arrow-down'></i>
-          </div>
-        </div>
-        <div>
-          <div id='session-label'>Session Length</div>
-          <div></div>
-        </div>
-      </section>
-      <section>howdy</section>
-      <section>hey</section>
+      <IncrementAndDecrement
+        breakTime={breakTime}
+        setBreakTime={setBreakTime}
+        sessionTime={sessionTime}
+        setSessionTime={setSessionTime}
+        isPlaying={isPlaying}
+      />
+      <Timer timer={timer} isSession={isSession} setIsSession={setIsSession} />
+      <Controls
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        setTimer={setTimer}
+      />
     </>
   );
 }
