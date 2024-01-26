@@ -6,6 +6,8 @@ const Controls = ({
   setBreakTime,
   setSessionTime,
   setIsSession,
+  setTimer,
+  setSeconds,
 }) => {
   const handlePausePlay = () => {
     setIsPlaying(!isPlaying);
@@ -16,6 +18,9 @@ const Controls = ({
     setBreakTime(5);
     setSessionTime(25);
     setIsSession(true);
+    setTimer(25);
+    setSeconds(0);
+    document.getElementById('timer').style.color = 'white';
   };
 
   return (

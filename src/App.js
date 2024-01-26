@@ -4,16 +4,22 @@ import Timer from './sections/Timer';
 import Controls from './sections/Controls';
 
 function App() {
-  const [breakTime, setBreakTime] = useState(5);
-  const [sessionTime, setSessionTime] = useState(25);
+  const [breakTime, setBreakTime] = useState(1);
+  const [sessionTime, setSessionTime] = useState(1);
   const [timer, setTimer] = useState(sessionTime);
+  const [seconds, setSeconds] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isSession, setIsSession] = useState(true);
+  const [isSession, setIsSession] = useState(false);
 
   return (
     <>
       <section id='top-title'>
         <h2>25 + 5 Clock</h2>
+        <audio
+          id='beep'
+          preload='auto'
+          src='https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav'
+        ></audio>
       </section>
       <IncrementAndDecrement
         breakTime={breakTime}
@@ -21,8 +27,11 @@ function App() {
         sessionTime={sessionTime}
         setSessionTime={setSessionTime}
         isPlaying={isPlaying}
+        isSession={isSession}
       />
       <Timer
+        seconds={seconds}
+        setSeconds={setSeconds}
         breakTime={breakTime}
         sessionTime={sessionTime}
         timer={timer}
@@ -37,7 +46,10 @@ function App() {
         setBreakTime={setBreakTime}
         setSessionTime={setSessionTime}
         setIsSession={setIsSession}
+        setTimer={setTimer}
+        setSeconds={setSeconds}
       />
+      <div className='spacer'></div>
     </>
   );
 }

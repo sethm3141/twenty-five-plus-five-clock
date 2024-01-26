@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const Timer = ({
+  seconds,
+  setSeconds,
   breakTime,
   sessionTime,
   timer,
@@ -10,29 +12,41 @@ const Timer = ({
   isPlaying,
 }) => {
   const [timeStamp, setTimeStamp] = useState(null);
-  const [seconds, setSeconds] = useState(0);
   const intervalRef = useRef(null);
+  const intervalClearCount = useRef(null);
   const intervalCount = useRef(0);
-  // console.log('time stamp: ' + timeStamp);
 
   //* Timer Functionality.
   const TimerFunction = (timeVal, secVal) => {
-    console.log('time stamp: ' + timeVal);
-    console.log('Date: ' + Date.now());
-
     if (timeVal) {
       const newTimeInput = secVal - Math.floor((Date.now() - timeVal) / 1000);
 
-      console.log('..............');
-      console.log('input: ' + newTimeInput);
-      console.log('..............');
-
-      if (newTimeInput <= 0) {
-        //! it won't get the most recent seconds value.
-        setTimer(timer - 1);
-        setSeconds(59);
+      if (newTimeInput < 0) {
+        if (timer > 0) {
+          if (timer == 1) {
+            document.getElementById('timer').style.color = 'red';
+          }
+          setTimer(timer - 1);
+          setSeconds(59);
+          return 1;
+        } else if (timer <= 0) {
+          if (isSession) {
+            setTimer(breakTime);
+          } else {
+            setTimer(sessionTime);
+          }
+          document.getElementById('timer').style.color = 'white';
+          const audioElement = document.getElementById('beep');
+          audioElement.currentTime = 0;
+          audioElement.volume = 0.15;
+          audioElement.play();
+          setSeconds(0);
+          setIsSession(!isSession);
+          return 2;
+        }
       }
       setSeconds(newTimeInput);
+      return 0;
     }
   };
 
@@ -51,8 +65,11 @@ const Timer = ({
   useEffect(() => {
     if (!isPlaying && intervalRef.current) {
       return () => {
+        intervalClearCount.current += 1;
         clearInterval(intervalRef.current);
-        console.log('cleared interval.');
+        console.log(
+          'cleared interval ' + intervalClearCount.current + ' times'
+        );
         setTimeStamp(null);
       };
     } else if (!isPlaying) {
@@ -62,26 +79,33 @@ const Timer = ({
     setTimeStamp(Date.now());
 
     return () => {
+      intervalClearCount.current += 1;
       clearInterval(intervalRef.current);
-      console.log('cleared interval.');
+      console.log('cleared interval ' + intervalClearCount.current + ' times');
     };
-  }, [isPlaying]);
+  }, [isPlaying, timer]);
 
   //* Update timer when break and session lengths are updated
   useEffect(() => {
     if (isSession) {
       setTimer(sessionTime);
-    } else if (!isSession) {
-      setTimer(breakTime);
+      setSeconds(0);
     }
-  }, [breakTime, sessionTime]);
+  }, [sessionTime]);
+  useEffect(() => {
+    if (!isSession) {
+      setTimer(breakTime);
+      setSeconds(0);
+    }
+  }, [breakTime]);
 
   return (
     <section id='timer'>
       <h3 id='timer-label'>{isSession ? 'Session' : 'Break'}</h3>
       <h1 id='time-left'>
-        {timer?.toString()?.padStart(2, '0')}:
-        {seconds?.toString()?.padStart(2, '0')}
+        <span id='minutes'>{timer?.toString()?.padStart(2, '0')}</span>
+        <span id='colon'>:</span>
+        <span id='seconds'>{seconds?.toString()?.padStart(2, '0')}</span>
       </h1>
     </section>
   );

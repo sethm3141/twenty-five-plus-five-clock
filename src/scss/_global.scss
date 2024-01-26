@@ -1,16 +1,40 @@
 // Variables
-$primary: hsla(190, 50%, 30%, 1);
-$secondary: hsla(190, 65%, 10%, 0.5);
+$primary: hsla(210, 35%, 55%, 1);
+// $primary: hsl(20, 30%, 40%);
+$secondary: hsla(210, 65%, 10%, 0.5);
 
-html {
+html,
+body {
   color: white;
   background-color: $primary;
   font-size: 16px;
   font-family: 'Merriweather', serif;
+  margin: 0;
+
+  @media only screen and (max-width: 600px) {
+    /* Styles for mobile devices */
+    font-size: 14px;
+  }
+
+  @media only screen and (max-height: 600px) {
+    /* Styles for mobile devices */
+    font-size: 12px;
+  }
 }
 
 #root {
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+
+.spacer {
+  height: 0;
+
+  @media only screen and (max-width: 600px) {
+    /* Styles for mobile devices */
+    height: 6rem;
+  }
 }

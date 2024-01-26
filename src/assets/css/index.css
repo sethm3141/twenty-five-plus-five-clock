@@ -1,29 +1,59 @@
-html {
+html,
+body {
   color: white;
-  background-color: hsl(190, 50%, 30%);
+  background-color: hsl(210, 35%, 55%);
   font-size: 16px;
   font-family: "Merriweather", serif;
+  margin: 0;
+}
+@media only screen and (max-width: 600px) {
+  html,
+  body {
+    /* Styles for mobile devices */
+    font-size: 14px;
+  }
+}
+@media only screen and (max-height: 600px) {
+  html,
+  body {
+    /* Styles for mobile devices */
+    font-size: 12px;
+  }
 }
 
 #root {
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+
+.spacer {
+  height: 0;
+}
+@media only screen and (max-width: 600px) {
+  .spacer {
+    /* Styles for mobile devices */
+    height: 6rem;
+  }
 }
 
 #increment-and-decrement {
   display: flex;
-  width: max-content;
+  justify-content: space-between;
+  width: 22rem;
 }
 
 #timer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 16rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 1.5rem 2rem;
-  border: 0.5rem solid hsla(190, 65%, 10%, 0.5);
+  border: 0.5rem solid hsla(210, 65%, 10%, 0.5);
   border-radius: 3.5rem;
 }
 #timer #timer-label {
@@ -31,8 +61,22 @@ html {
   margin: 0;
 }
 #timer #time-left {
+  position: relative;
+  display: flex;
+  justify-content: center;
   font-size: 5rem;
+  width: 16rem;
+  padding-left: 0.35rem;
   margin: 0;
+}
+#timer #time-left #minutes {
+  width: 6.5rem;
+}
+#timer #time-left #colon {
+  width: 2rem;
+}
+#timer #time-left #seconds {
+  width: 6.5rem;
 }
 
 #controls {
@@ -53,19 +97,19 @@ html {
 }
 
 #top-title {
-  margin: 0;
+  margin-bottom: 2rem;
 }
 #top-title h2 {
   font-size: 3rem;
   font-weight: 300;
-  margin: 2rem 2rem;
+  margin: 0;
 }
 
 .adjustment {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 2.5rem;
+  margin: 0;
 }
 .adjustment .label {
   text-transform: capitalize;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Adjustment from '../components/Adjustment';
 
 const IncrementAndDecrement = ({
@@ -7,7 +7,18 @@ const IncrementAndDecrement = ({
   sessionTime,
   setSessionTime,
   isPlaying,
+  isSession,
 }) => {
+  // const isMounted = useRef(false);
+
+  // useEffect(() => {
+  //   if (!isMounted.current) {
+  //     isMounted.current = true;
+  //     return;
+  //   }
+
+  // }, [breakTime, sessionTime]);
+
   return (
     <section id='increment-and-decrement'>
       <Adjustment
