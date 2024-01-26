@@ -99,11 +99,9 @@ const Timer = ({
     <section id='timer'>
       <h3 id='timer-label'>{isSession ? 'Session' : 'Break'}</h3>
       <h1 id='time-left'>
-        {/* <span id='minutes'>{timer?.toString()?.padStart(2, '0')}</span>
+        <span id='minutes'>{timer?.toString()?.padStart(2, '0')}</span>
         <span id='colon'>:</span>
-        <span id='seconds'>{seconds?.toString()?.padStart(2, '0')}</span> */}
-        {timer?.toString()?.padStart(2, '0')}:
-        {seconds?.toString()?.padStart(2, '0')}
+        <span id='seconds'>{seconds?.toString()?.padStart(2, '0')}</span>
       </h1>
     </section>
   );
