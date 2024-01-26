@@ -8,8 +8,6 @@ const Controls = ({
   setIsSession,
   setTimer,
   setSeconds,
-  isSpecial,
-  setIsSpecial,
 }) => {
   const handlePausePlay = () => {
     setIsPlaying(!isPlaying);
@@ -37,17 +35,6 @@ const Controls = ({
       <div id='reset' onClick={() => handleReset()}>
         <i className='fa-solid fa-rotate'></i>
       </div>
-      <button
-        onClick={() => {
-          setIsSpecial(() => {
-            setSeconds(2);
-            return isSpecial + 1;
-          });
-        }}
-        style={{ cursor: 'pointer', marginLeft: '1rem', borderRadius: '1rem' }}
-      >
-        CLICK THIS
-      </button>
     </section>
   );
 };

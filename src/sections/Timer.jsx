@@ -10,14 +10,9 @@ const Timer = ({
   isSession,
   setIsSession,
   isPlaying,
-  isSpecial,
 }) => {
   const [timeStamp, setTimeStamp] = useState(null);
   const intervalRef = useRef(null);
-  //! below is for debugging.
-  const intervalClearCount = useRef(null);
-  const intervalCount = useRef(0);
-  const timeoutRef = useRef(null);
 
   //* Timer Functionality.
   const TimerFunction = (timeVal, secVal) => {
@@ -41,12 +36,6 @@ const Timer = ({
           setSeconds(0);
           setIsSession(!isSession);
           document.getElementById('timer').style.color = 'white';
-          // const audioElement = document.getElementById('beep');
-          // console.log('timer: ' + timer);
-          // console.log('seconds: ' + seconds);
-          // audioElement.currentTime = 0;
-          // audioElement.volume = 0.10;
-          // audioElement.play();
           return 2;
         }
       }
@@ -55,11 +44,10 @@ const Timer = ({
     }
   };
 
+  //* run alarm sound when time hits 00:00
   useEffect(() => {
     if (timer === 0 && seconds === 0) {
       const audioElement = document.getElementById('beep');
-      console.log('timer: ' + timer);
-      console.log('seconds: ' + seconds);
       audioElement.currentTime = 0;
       audioElement.volume = 0.1;
       audioElement.play();
@@ -69,8 +57,6 @@ const Timer = ({
   //* Setup timed interval for running timer function.
   useEffect(() => {
     if (timeStamp) {
-      intervalCount.current += 1;
-      console.log('set interval ' + intervalCount.current + ' times.');
       intervalRef.current = setInterval(() => {
         TimerFunction(timeStamp, seconds);
       }, 200);
@@ -81,11 +67,7 @@ const Timer = ({
   useEffect(() => {
     if (!isPlaying && intervalRef.current) {
       return () => {
-        intervalClearCount.current += 1;
         clearInterval(intervalRef.current);
-        console.log(
-          'cleared interval ' + intervalClearCount.current + ' times'
-        );
         setTimeStamp(null);
       };
     } else if (!isPlaying) {
@@ -95,11 +77,9 @@ const Timer = ({
     setTimeStamp(Date.now());
 
     return () => {
-      intervalClearCount.current += 1;
       clearInterval(intervalRef.current);
-      console.log('cleared interval ' + intervalClearCount.current + ' times');
     };
-  }, [isPlaying, timer, isSpecial]);
+  }, [isPlaying, timer]);
 
   //* Update timer when break and session lengths are updated
   useEffect(() => {
