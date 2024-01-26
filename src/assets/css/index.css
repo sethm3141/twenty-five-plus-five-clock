@@ -41,9 +41,15 @@ html {
 #controls #start-stop {
   font-size: 2rem;
 }
+#controls #start-stop:hover {
+  cursor: pointer;
+}
 #controls #reset {
   font-size: 2rem;
   margin-left: 1rem;
+}
+#controls #reset:hover {
+  cursor: pointer;
 }
 
 #top-title {

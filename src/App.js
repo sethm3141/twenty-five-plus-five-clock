@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Controls from './sections/Controls';
 import IncrementAndDecrement from './sections/IncrementAndDecrement';
 import Timer from './sections/Timer';
+import Controls from './sections/Controls';
 
 function App() {
   const [breakTime, setBreakTime] = useState(5);
@@ -29,12 +29,14 @@ function App() {
         setTimer={setTimer}
         isSession={isSession}
         setIsSession={setIsSession}
+        isPlaying={isPlaying}
       />
       <Controls
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
         setBreakTime={setBreakTime}
         setSessionTime={setSessionTime}
+        setIsSession={setIsSession}
       />
     </>
   );
