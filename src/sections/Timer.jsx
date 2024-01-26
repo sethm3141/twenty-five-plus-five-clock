@@ -61,10 +61,10 @@ const Timer = ({
       console.log('timer: ' + timer);
       console.log('seconds: ' + seconds);
       audioElement.currentTime = 0;
-      audioElement.volume = 0.10;
+      audioElement.volume = 0.1;
       audioElement.play();
     }
-  }, [seconds])
+  }, [seconds]);
 
   //* Setup timed interval for running timer function.
   useEffect(() => {
