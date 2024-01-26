@@ -10,11 +10,14 @@ const Timer = ({
   isSession,
   setIsSession,
   isPlaying,
+  isSpecial,
 }) => {
   const [timeStamp, setTimeStamp] = useState(null);
   const intervalRef = useRef(null);
+  //! below is for debugging.
   const intervalClearCount = useRef(null);
   const intervalCount = useRef(0);
+  const timeoutRef = useRef(null);
 
   //* Timer Functionality.
   const TimerFunction = (timeVal, secVal) => {
@@ -35,13 +38,15 @@ const Timer = ({
           } else {
             setTimer(sessionTime);
           }
-          document.getElementById('timer').style.color = 'white';
-          const audioElement = document.getElementById('beep');
-          audioElement.currentTime = 0;
-          audioElement.volume = 0.15;
-          audioElement.play();
           setSeconds(0);
           setIsSession(!isSession);
+          document.getElementById('timer').style.color = 'white';
+          // const audioElement = document.getElementById('beep');
+          // console.log('timer: ' + timer);
+          // console.log('seconds: ' + seconds);
+          // audioElement.currentTime = 0;
+          // audioElement.volume = 0.10;
+          // audioElement.play();
           return 2;
         }
       }
@@ -49,6 +54,17 @@ const Timer = ({
       return 0;
     }
   };
+
+  useEffect(() => {
+    if (timer === 0 && seconds === 0) {
+      const audioElement = document.getElementById('beep');
+      console.log('timer: ' + timer);
+      console.log('seconds: ' + seconds);
+      audioElement.currentTime = 0;
+      audioElement.volume = 0.10;
+      audioElement.play();
+    }
+  }, [seconds])
 
   //* Setup timed interval for running timer function.
   useEffect(() => {
@@ -83,7 +99,7 @@ const Timer = ({
       clearInterval(intervalRef.current);
       console.log('cleared interval ' + intervalClearCount.current + ' times');
     };
-  }, [isPlaying, timer]);
+  }, [isPlaying, timer, isSpecial]);
 
   //* Update timer when break and session lengths are updated
   useEffect(() => {

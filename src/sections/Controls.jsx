@@ -8,7 +8,8 @@ const Controls = ({
   setIsSession,
   setTimer,
   setSeconds,
-  timer,
+  isSpecial,
+  setIsSpecial,
 }) => {
   const handlePausePlay = () => {
     setIsPlaying(!isPlaying);
@@ -19,7 +20,7 @@ const Controls = ({
     setBreakTime(5);
     setSessionTime(25);
     setIsSession(true);
-    setTimer(1);
+    setTimer(25);
     setSeconds(0);
     document.getElementById('timer').style.color = 'white';
     const audioElement = document.getElementById('beep');
@@ -38,9 +39,9 @@ const Controls = ({
       </div>
       <button
         onClick={() => {
-          setTimer(() => {
-            setSeconds(5);
-            return -0.1;
+          setIsSpecial(() => {
+            setSeconds(2);
+            return isSpecial + 1;
           });
         }}
         style={{ cursor: 'pointer', marginLeft: '1rem', borderRadius: '1rem' }}

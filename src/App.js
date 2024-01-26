@@ -10,6 +10,7 @@ function App() {
   const [seconds, setSeconds] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isSession, setIsSession] = useState(true);
+  const [isSpecial, setIsSpecial] = useState(0);
 
   return (
     <>
@@ -39,6 +40,7 @@ function App() {
         isSession={isSession}
         setIsSession={setIsSession}
         isPlaying={isPlaying}
+        isSpecial={isSpecial}
       />
       <Controls
         isPlaying={isPlaying}
@@ -48,7 +50,8 @@ function App() {
         setIsSession={setIsSession}
         setTimer={setTimer}
         setSeconds={setSeconds}
-        timer={timer}
+        isSpecial={isSpecial}
+        setIsSpecial={setIsSpecial}
       />
       <div className='spacer'></div>
     </>
