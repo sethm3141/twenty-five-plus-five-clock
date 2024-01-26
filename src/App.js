@@ -22,11 +22,19 @@ function App() {
         setSessionTime={setSessionTime}
         isPlaying={isPlaying}
       />
-      <Timer timer={timer} isSession={isSession} setIsSession={setIsSession} />
+      <Timer
+        breakTime={breakTime}
+        sessionTime={sessionTime}
+        timer={timer}
+        setTimer={setTimer}
+        isSession={isSession}
+        setIsSession={setIsSession}
+      />
       <Controls
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
-        setTimer={setTimer}
+        setBreakTime={setBreakTime}
+        setSessionTime={setSessionTime}
       />
     </>
   );

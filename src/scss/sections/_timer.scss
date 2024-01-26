@@ -1,0 +1,22 @@
+@use '../global' as *;
+
+#timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1.5rem 2rem;
+  border: 0.5rem solid $secondary;
+  border-radius: 3.5rem;
+
+  & #timer-label {
+    font-size: 1.8rem;
+    margin: 0;
+  }
+
+  & #time-left {
+    font-size: 5rem;
+    margin: 0;
+  }
+}

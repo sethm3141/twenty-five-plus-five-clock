@@ -1,16 +1,24 @@
 .adjustment {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  margin: 0 2.5rem;
 
   & .label {
+    text-transform: capitalize;
+    font-size: 1.3rem;
     margin: 0;
   }
 
   & div {
     display: flex;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-top: 0.25rem;
 
     & h3 {
-      margin: 0;
+      display: flex;
+      margin: 0 1.2rem 0.3rem 1.2rem;
     }
 
     & i {

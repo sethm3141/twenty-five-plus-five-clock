@@ -1,0 +1,12 @@
+#controls {
+  display: flex;
+
+  & #start-stop {
+    font-size: 2rem;
+  }
+
+  & #reset {
+    font-size: 2rem;
+    margin-left: 1rem;
+  }
+}
