@@ -82,10 +82,10 @@ body {
 #controls {
   display: flex;
 }
-#controls #start-stop {
+#controls #start_stop {
   font-size: 2rem;
 }
-#controls #start-stop:hover {
+#controls #start_stop:hover {
   cursor: pointer;
 }
 #controls #reset {

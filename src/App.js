@@ -4,12 +4,12 @@ import Timer from './sections/Timer';
 import Controls from './sections/Controls';
 
 function App() {
-  const [breakTime, setBreakTime] = useState(1);
-  const [sessionTime, setSessionTime] = useState(1);
+  const [breakTime, setBreakTime] = useState(5);
+  const [sessionTime, setSessionTime] = useState(25);
   const [timer, setTimer] = useState(sessionTime);
   const [seconds, setSeconds] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isSession, setIsSession] = useState(false);
+  const [isSession, setIsSession] = useState(true);
 
   return (
     <>
@@ -48,6 +48,7 @@ function App() {
         setIsSession={setIsSession}
         setTimer={setTimer}
         setSeconds={setSeconds}
+        timer={timer}
       />
       <div className='spacer'></div>
     </>
